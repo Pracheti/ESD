@@ -12,9 +12,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Students, Integer> {
-
-    @Query("select s from students s where s.student_id=:sid")
-    Students getStudentsByStudent_id(@Param("sid") Integer student_id);
-
+public interface PlacementFilter extends JpaRepository<Placement_Filter>{
+    @Query("SELECT p FROM placement p join placement_filter pf on p.placement_id=pf.placement_id WHERE p.minimum_grade =: grade AND pf.specialization = : spec AND lastName AND pf.domain = : dom")
+    Placement_Filter getRecords(
+            @Param("grade") float min_grade,
+            @Param("specialization") String spec,
+            @Param("domain") String dom
+    );
 }

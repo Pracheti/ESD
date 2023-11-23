@@ -18,7 +18,10 @@ public class Login {
     private int Login_id;
 
     @Column(name="Username")
-    private int username;
+    private String username;
+
+    @Column(name="Password")
+    private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
