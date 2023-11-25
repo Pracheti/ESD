@@ -1,5 +1,6 @@
 package com.example.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,12 +33,13 @@ public class Placement {
     private int intake;
 
     @Column(name="minimum_grade")
-    private String minimum_grade;
+    private Float minimum_grade;
 
-    @OneToMany(mappedBy = "placement")
+    @JsonBackReference
+    @OneToMany(mappedBy = "placement", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Placement_Filter> PlacementFil;
 
-    @OneToMany(mappedBy = "placement") /*cascade = CascadeType.ALL, orphanRemoval = true*/
+    @OneToMany(mappedBy = "placement", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Placement_Student> PlacementStu;
 
 }

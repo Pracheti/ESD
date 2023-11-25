@@ -11,9 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController
-@RequestMapping("/offers")
+//@RestController
+//@RequestMapping("/offers")
 public class StudentController {
-    @Autowired
-    private StudentRepository studentRepository;
+    //@Autowired
+    //private StudentRepository studentRepository;
 }

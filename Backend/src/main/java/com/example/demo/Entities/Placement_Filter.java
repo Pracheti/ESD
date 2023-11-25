@@ -1,5 +1,6 @@
 package com.example.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,9 +18,10 @@ public class Placement_Filter {
     @Column(name="placement_filter_id")
     private int placement_filter_id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "placement_id")
-    Placement placement;
+    private Placement placement;
 
     @Column(name="specialisation")
     private String specialisation;
