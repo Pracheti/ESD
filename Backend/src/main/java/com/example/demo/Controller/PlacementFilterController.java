@@ -1,9 +1,13 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Entities.Placement;
 import com.example.demo.Entities.Placement_Filter;
 import com.example.demo.Entities.Students;
+import com.example.demo.Entities.Test;
 import com.example.demo.Repository.PlacementFilterRepository;
 import com.example.demo.Repository.StudentRepository;
+import com.example.demo.Response.OffersQuery;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -21,13 +25,19 @@ public class PlacementFilterController{
     private PlacementFilterRepository PFRepository;
 
     @GetMapping("/{grade}/{spec}/{dom}")
-    public ResponseEntity<List<Placement_Filter>> getRecords(@PathVariable Float grade, @PathVariable String spec, @PathVariable String dom) {
+    /*public ResponseEntity<List<Placement_Filter>> getRecords(@PathVariable Float grade, @PathVariable String spec, @PathVariable String dom) {
         List<Placement_Filter> result = PFRepository.getRecords(grade, spec, dom);
         if(result.size()<=0){
-            System.out.println("Reached");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         System.out.println(result);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        //List<Placement_Filter> result = PFRepository.getPlacement_FiltersByDomainAndSpecialisation(dom, spec);
+        //List<Placement_Filter> result = PFRepository.findAllByInnerJoin();
+        //System.out.println("Placement ID: " + result.getFirst().getPlacement().getPlacement_id());
+
+        return new ResponseEntity<List<Placement_Filter>>(result, HttpStatus.OK);
+    }*/
+    public List<OffersQuery> findAllWithInnerJoin(@PathVariable Float grade, @PathVariable String spec, @PathVariable String dom) {
+        return PFRepository.findAllWithInnerJoin(grade, spec, dom);
     }
 }

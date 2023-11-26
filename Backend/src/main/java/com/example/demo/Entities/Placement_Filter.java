@@ -20,7 +20,7 @@ public class Placement_Filter {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "placement_id")
+    @JoinColumn(name = "placement_id", referencedColumnName = "placement_id")
     private Placement placement;
 
     @Column(name="specialisation")
