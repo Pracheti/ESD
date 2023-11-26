@@ -9,8 +9,14 @@ class ListOfferComponent extends Component {
         }
     }
     componentDidMount(){
-        PlacementOfferServices.getOffers().then((res) => {
+        PlacementOfferServices.getOffers()
+        .then((res) => {
+            console.log('API Response:', res.data);
             this.setState({offers: res.data});
+        })
+        .catch((error) => {
+            console.error('API Error:', error);
+      
         });
     }
     render() {
@@ -25,21 +31,17 @@ class ListOfferComponent extends Component {
                         <th>Intake</th>
                         <th>Organization</th>
                         <th>Profile</th>
-                        <th>Domain</th>
-                        <th>Specialization</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         this.state.offers.map(
                             offers => 
-                            <tr key = {offers.id}>
-                                <td> {offers.Description} </td>
-                                <td> {offers.Intake} </td>
-                                <td> {offers.Organization} </td>
-                                <td> {offers.Profile} </td>
-                                <td> {offers.Domain} </td>
-                                <td> {offers.Specialization} </td>
+                            <tr key = {offers.placement_id}>
+                                <td> {offers.description} </td>
+                                <td> {offers.intake} </td>
+                                <td> {offers.organization} </td>
+                                <td> {offers.profile} </td> 
                             </tr>
                         )
                     }
