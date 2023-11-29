@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import ListOfferComponent from './Components/ListOfferComponent';
 import HeaderComponent from './Components/HeaderComponent';
 import FooterComponent from './Components/FooterComponent';
-//import Login from './Layout/Login';
+import Login from './Components/Login';
 import FillOfferDetails from './Components/FillOfferDetails';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <HeaderComponent />
             <div className="container">
               <Routes> 
+                <Route path="/login" element={<Login/>} />
                 <Route path="/offers" element={<ListOfferComponent/>} />
                 <Route path="/offers/:placementId" element={<FillOfferDetails />} /> 
               </Routes>

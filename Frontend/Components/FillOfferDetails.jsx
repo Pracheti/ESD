@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PlacementOfferServices from '../services/PlacementOfferServices';
 
 class FillOfferDetails extends Component {
     constructor(props){
@@ -12,6 +13,7 @@ class FillOfferDetails extends Component {
         this.changeAboutHandler = this.changeAboutHandler.bind(this);
         this.changeCommentsHandler = this.changeCommentsHandler.bind(this);
         this.changeDateHandler = this.changeDateHandler.bind(this);
+        this.saveDetails = this.saveDetails.bind(this);
     }
     changeAboutHandler=(event)=>{
         this.setState({about: event.target.value});
@@ -21,6 +23,11 @@ class FillOfferDetails extends Component {
     }
     changeDateHandler=(event)=>{
         this.setState({date: event.target.value});
+    }
+    saveDetails=(e)=>{
+        e.preventDefault();
+        let details = {about: this.state.about, acceptance: this.state.acceptance, comments: this.state.comments, date: this.state.date};
+        console.log('details => '+ JSON.stringify(details));
     }
     render() {
     return (
@@ -43,7 +50,11 @@ class FillOfferDetails extends Component {
                                     <label>Date</label>
                                     <input placeholder='Date' name='date' className='form-control' value={this.state.date} onChange={this.changeDateHandler} />
                                 </div>
-                                <button className='btn btn-success' onClick={this.save}>Save</button>
+                                <div className='form-group'>
+                                    <label>Upload CV</label>
+                                    <input placeholder='CV' name='cv' className='form-control' />
+                                </div>
+                                <button className='btn btn-success' onClick={this.saveDetails}>Save</button>
                             </form>
                         </div>
                     </div>
