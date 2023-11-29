@@ -1,5 +1,6 @@
 package com.example.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,6 +53,7 @@ public class Students {
     //@Column(name="placement_id")
     //private int placement_id;
 
+    @JsonBackReference(value="user-person3")
     @OneToMany(mappedBy = "students")
     private Set<Placement_Student> placementstudent;
 

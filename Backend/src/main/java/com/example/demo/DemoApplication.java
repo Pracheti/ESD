@@ -14,11 +14,11 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
-		StudentRepository studentRepository = context.getBean(StudentRepository.class);
+		/*StudentRepository studentRepository = context.getBean(StudentRepository.class);
 		Students s1 = studentRepository.getStudentsByStudent_id(1);
 		if(s1!=null)
 			System.out.println(s1.getFirst_name());
 		else
-			System.out.println("Null");
+			System.out.println("Null");*/
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,10 +21,12 @@ public class Placement_Student {
     @Column(name="placement_student_id")
     private int placement_student_id;
 
+    @JsonManagedReference(value="user-person1")
     @ManyToOne
     @JoinColumn(name = "placement_id")
     private Placement placement;
 
+    @JsonManagedReference(value="user-person3")
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Students students;

@@ -35,10 +35,11 @@ public class Placement {
     @Column(name="minimum_grade")
     private Float minimum_grade;
 
-    @JsonBackReference
+    @JsonBackReference(value="user-person")
     @OneToMany(mappedBy = "placement", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Placement_Filter> PlacementFil;
 
+    @JsonBackReference(value="user-person1")
     @OneToMany(mappedBy = "placement", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Placement_Student> PlacementStu;
 

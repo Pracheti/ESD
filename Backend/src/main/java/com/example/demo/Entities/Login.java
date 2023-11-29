@@ -12,18 +12,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Login {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Login_id", nullable = false)
-    private int Login_id;
 
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", unique = true, nullable = false)
+    private Students student;
+
+    @Id
     @Column(name="Username", unique = true, nullable = false)
     private String username;
 
     @Column(name="Password", nullable = false)
     private String password;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", nullable = false)
-    private Students student;
 }

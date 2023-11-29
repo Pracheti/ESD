@@ -13,8 +13,6 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Students, Integer> {
-
     @Query("select s from students s where s.student_id=:sid")
     Students getStudentsByStudent_id(@Param("sid") Integer student_id);
-
 }

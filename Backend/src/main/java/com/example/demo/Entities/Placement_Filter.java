@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class Placement_Filter {
     @Column(name="placement_filter_id")
     private int placement_filter_id;
 
-    @JsonBackReference
+    @JsonManagedReference(value="user-person")
     @ManyToOne
     @JoinColumn(name = "placement_id", referencedColumnName = "placement_id")
     private Placement placement;
