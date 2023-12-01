@@ -11,8 +11,7 @@ const ListItem = ({ offer, onViewDetails }) => (
     <td>
       <button
         className="btn btn-primary"
-        onClick={() => onViewDetails(offer.placement_id)}
-      >
+        onClick={() => onViewDetails(offer.placement_id)}>
         Accept
       </button>
     </td>

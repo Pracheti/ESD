@@ -7,10 +7,13 @@ class PlacementOfferServices{
     getOffers(){
         return axios.get(OFFERS_URL_1);
     }
-    fillDetails(details){
-        return axios.post(SAVE_URL_2, details, {headers: {
-            'Content-Type': 'application/json',
-    }});
+    fillDetails(formdata){
+        return axios.post(SAVE_URL_2, formdata, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+            
+    });
     }
 }
 export default new PlacementOfferServices()

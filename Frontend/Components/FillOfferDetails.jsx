@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+//import { useState } from 'react';
 import PlacementOfferServices from '../services/PlacementOfferServices';
 import ListOfferComponent from './ListOfferComponent';
-import axios from 'axios';
 
 class FillOfferDetails extends Component {
     constructor(props){
@@ -15,6 +15,7 @@ class FillOfferDetails extends Component {
             student_id: 1,
             file: null
         }
+        
         this.changeAboutHandler = this.changeAboutHandler.bind(this);
         this.changeCommentsHandler = this.changeCommentsHandler.bind(this);
         this.changeDateHandler = this.changeDateHandler.bind(this);
@@ -25,7 +26,6 @@ class FillOfferDetails extends Component {
         const formattedDate = currentDate.toISOString().slice(0, 10);
         return formattedDate;
     }
-    
     changeAboutHandler=(event)=>{
         this.setState({about: event.target.value});
     }
@@ -37,28 +37,36 @@ class FillOfferDetails extends Component {
     }
     saveDetails=(e)=>{
         e.preventDefault();
-        let details = {about: this.state.about, acceptance: this.state.acceptance, comments: this.state.comments, date: this.state.date, placement_id: this.state.placement_id, student_id: this.state.student_id};
-        console.log('details => '+ JSON.stringify(details));
-        PlacementOfferServices.fillDetails(details);
 
+        const formData = new FormData();
+    formData.append('file', this.state.file);
+    //formData.append('name', 'CV');
+    formData.append('about', this.state.about);
+    formData.append('acceptance', this.state.acceptance);
+    formData.append('comments', this.state.comments);
+    formData.append('date', this.state.date);
+    formData.append('placement_id', this.state.placement_id);
+    formData.append('student_id', this.state.student_id);
+
+
+        /*let formdata = new FormData();
+        formdata.append('file', this.state.file);
+        formdata.append('name', "CV");
+        let details = {about: this.state.about, acceptance: this.state.acceptance, comments: this.state.comments, date: this.state.date, placement_id: this.state.placement_id, student_id: this.state.student_id};
+        console.log('details => '+ JSON.stringify(details));*/
+        PlacementOfferServices.fillDetails(formData)
+        .then(response => {
+            console.log('File uploaded successfully!!!', response);
+        })
+        .catch(error => {
+            console.error('Error uploading file', error);
+        });
     }
     handleFile(e){
         let file = e.target.files[0]
-        this.setState({file: e})
+        this.setState({file: file})
     }
-    handleClick(e){
-        let file=this.state.file
-        let formdata = new formdata()
-        formdata.append('file', file)
-        formdata.append('name', "CV")
-        axios({
-            url:'',
-            method: "post",
-            data: formdata
-        }).then((res)=>{
-
-        })
-    }
+    
     render() {
     return (
         <div> 
@@ -82,8 +90,7 @@ class FillOfferDetails extends Component {
                                 </div>
                                 <div className='form-group'>
                                     <label>Upload CV</label>
-                                    <input type='file' name='file' onChange={(e)=>this.handleFile(e)}/>
-                                    <button type='button' onClick={(e)=>this.handleClick(e)}>Upload</button>
+                                    <input type='file' name='file' onChange={(e)=>this.handleFile(e)}/> 
                                 </div>
                                 <button className='btn btn-success' onClick={this.saveDetails}>Save</button>
                             </form>
