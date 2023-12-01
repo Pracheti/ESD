@@ -19,7 +19,7 @@ public class Placement_Filter {
     @Column(name="placement_filter_id")
     private int placement_filter_id;
 
-    @JsonManagedReference(value="user-person")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "placement_id", referencedColumnName = "placement_id")
     private Placement placement;

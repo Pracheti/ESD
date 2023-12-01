@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity(name="placement_student")
 @Getter
@@ -21,18 +20,15 @@ public class Placement_Student {
     @Column(name="placement_student_id")
     private int placement_student_id;
 
-    @JsonManagedReference(value="user-person1")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "placement_id")
     private Placement placement;
 
-    @JsonManagedReference(value="user-person3")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Students students;
-
-    @Column(name="cv_application")
-    private String cv_application;
 
     @Column(name="about")
     private String about;
@@ -45,4 +41,8 @@ public class Placement_Student {
 
     @Column(name="date")
     private LocalDate date;
+
+    @Lob
+    @Column(name="file", columnDefinition = "LONGBLOB")
+    private byte[] file;
 }

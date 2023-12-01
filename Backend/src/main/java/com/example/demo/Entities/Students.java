@@ -53,7 +53,7 @@ public class Students {
     //@Column(name="placement_id")
     //private int placement_id;
 
-    @JsonBackReference(value="user-person3")
+
     @OneToMany(mappedBy = "students")
     private Set<Placement_Student> placementstudent;
 

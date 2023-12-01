@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Objects;
 
+@CrossOrigin
 @Controller
 @RequestMapping(produces = "application/json")
 public class LoginController {
